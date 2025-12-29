@@ -225,6 +225,7 @@ function nextSection() {
     if (currentSection < quizData.categories.length - 1) {
         currentSection++;
         renderSection();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         showScreen('email-capture');
     }
@@ -235,6 +236,7 @@ function previousSection() {
     if (currentSection > 0) {
         currentSection--;
         renderSection();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
@@ -300,15 +302,24 @@ function getOverallInterpretation(score) {
 function calculateAndShowResults() {
     const results = calculateScores();
 
-    // Update total score
-    document.getElementById('totalScore').textContent = results.totalScore;
+    // Show screen first
+    showScreen('results');
+
+    // Animate score counter
+    animateScore(0, results.totalScore, 1500);
+
+    // Update level and message
     document.getElementById('scoreLevel').textContent = results.overallInterpretation.level;
     document.getElementById('scoreMessage').textContent = results.overallInterpretation.message;
-
-    // Set level class for styling
     document.getElementById('scoreLevel').className = `score-level level-${results.overallInterpretation.level.toLowerCase()}`;
 
-    // Render category bars
+    // Animate score ring
+    animateScoreRing(results.totalScore, 175);
+
+    // Render radar chart
+    renderRadarChart(results.categoryScores);
+
+    // Render category bars (initially at 0 width)
     const categoryBarsContainer = document.getElementById('categoryBars');
     categoryBarsContainer.innerHTML = results.categoryScores.map(cat => `
         <div class="category-bar-item">
@@ -317,7 +328,7 @@ function calculateAndShowResults() {
                 <span class="category-bar-score">${cat.score}/25</span>
             </div>
             <div class="category-bar">
-                <div class="category-bar-fill" style="width: ${(cat.score / 25) * 100}%" data-level="${cat.interpretation.label}"></div>
+                <div class="category-bar-fill" data-width="${(cat.score / 25) * 100}" data-level="${cat.interpretation.label}"></div>
             </div>
             <span class="category-bar-label">${cat.interpretation.label}</span>
         </div>
@@ -328,24 +339,155 @@ function calculateAndShowResults() {
 
     // Top 3 strengths
     const strengthsList = document.getElementById('strengthsList');
-    strengthsList.innerHTML = sortedCategories.slice(0, 3).map(cat =>
-        `<li><strong>${cat.title}</strong> (${cat.score}/25)</li>`
+    strengthsList.innerHTML = sortedCategories.slice(0, 3).map((cat, i) =>
+        `<li style="animation-delay: ${0.6 + i * 0.1}s"><strong>${cat.title}</strong> <span class="score-badge">${cat.score}/25</span></li>`
     ).join('');
 
     // Bottom 3 development areas
     const developmentList = document.getElementById('developmentList');
-    developmentList.innerHTML = sortedCategories.slice(-3).reverse().map(cat =>
-        `<li><strong>${cat.title}</strong> (${cat.score}/25)</li>`
+    developmentList.innerHTML = sortedCategories.slice(-3).reverse().map((cat, i) =>
+        `<li style="animation-delay: ${0.6 + i * 0.1}s"><strong>${cat.title}</strong> <span class="score-badge">${cat.score}/25</span></li>`
     ).join('');
 
-    showScreen('results');
-
-    // Animate bars after showing
+    // Animate bars after delay
     setTimeout(() => {
-        document.querySelectorAll('.category-bar-fill').forEach(bar => {
-            bar.style.transition = 'width 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        document.querySelectorAll('.category-bar-fill').forEach((bar, i) => {
+            setTimeout(() => {
+                bar.style.width = bar.dataset.width + '%';
+            }, i * 100);
         });
+    }, 400);
+}
+
+// Animate score counter
+function animateScore(start, end, duration) {
+    const scoreEl = document.getElementById('totalScore');
+    const startTime = performance.now();
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3); // ease out cubic
+        const current = Math.round(start + (end - start) * easeProgress);
+        scoreEl.textContent = current;
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+// Animate score ring
+function animateScoreRing(score, maxScore) {
+    const ring = document.getElementById('scoreRing');
+    const circumference = 2 * Math.PI * 85;
+    const percentage = score / maxScore;
+    const offset = circumference - (percentage * circumference);
+
+    ring.style.strokeDasharray = circumference;
+    ring.style.strokeDashoffset = circumference;
+
+    setTimeout(() => {
+        ring.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        ring.style.strokeDashoffset = offset;
     }, 100);
+}
+
+// Render radar chart
+function renderRadarChart(categoryScores) {
+    const svg = document.getElementById('radarChart');
+    const centerX = 200;
+    const centerY = 200;
+    const maxRadius = 150;
+    const levels = 5;
+    const categories = categoryScores.length;
+
+    // Clear previous
+    svg.innerHTML = '';
+
+    // Draw grid circles
+    for (let i = 1; i <= levels; i++) {
+        const radius = (maxRadius / levels) * i;
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', centerX);
+        circle.setAttribute('cy', centerY);
+        circle.setAttribute('r', radius);
+        circle.setAttribute('class', 'radar-grid');
+        svg.appendChild(circle);
+    }
+
+    // Draw axis lines and labels
+    const angleStep = (2 * Math.PI) / categories;
+    categoryScores.forEach((cat, i) => {
+        const angle = angleStep * i - Math.PI / 2;
+        const x = centerX + Math.cos(angle) * maxRadius;
+        const y = centerY + Math.sin(angle) * maxRadius;
+
+        // Axis line
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', centerX);
+        line.setAttribute('y1', centerY);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', y);
+        line.setAttribute('class', 'radar-axis');
+        svg.appendChild(line);
+
+        // Label
+        const labelX = centerX + Math.cos(angle) * (maxRadius + 25);
+        const labelY = centerY + Math.sin(angle) * (maxRadius + 25);
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', labelX);
+        text.setAttribute('y', labelY);
+        text.setAttribute('class', 'radar-label');
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('dominant-baseline', 'middle');
+
+        // Shorter labels
+        const shortLabels = ['Strategy', 'Culture', 'Team', 'Transform', 'Listen', 'Crisis', 'Inner Game'];
+        text.textContent = shortLabels[i];
+        svg.appendChild(text);
+    });
+
+    // Calculate data points
+    const points = categoryScores.map((cat, i) => {
+        const angle = angleStep * i - Math.PI / 2;
+        const value = cat.score / 25; // normalize to 0-1
+        const radius = value * maxRadius;
+        return {
+            x: centerX + Math.cos(angle) * radius,
+            y: centerY + Math.sin(angle) * radius
+        };
+    });
+
+    // Draw data polygon
+    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    const pointsString = points.map(p => `${p.x},${p.y}`).join(' ');
+    polygon.setAttribute('points', pointsString);
+    polygon.setAttribute('class', 'radar-data');
+    svg.appendChild(polygon);
+
+    // Draw data points
+    points.forEach((point, i) => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', point.x);
+        circle.setAttribute('cy', point.y);
+        circle.setAttribute('r', 6);
+        circle.setAttribute('class', 'radar-point');
+        circle.style.animationDelay = `${0.5 + i * 0.1}s`;
+        svg.appendChild(circle);
+    });
+
+    // Render legend
+    const legendContainer = document.getElementById('radarLegend');
+    legendContainer.innerHTML = categoryScores.map(cat => `
+        <div class="radar-legend-item">
+            <span class="radar-legend-dot"></span>
+            <span class="radar-legend-label">${cat.title}</span>
+            <span class="radar-legend-score">${cat.score}/25</span>
+        </div>
+    `).join('');
 }
 
 // Initialize
