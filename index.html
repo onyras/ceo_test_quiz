@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CEO Test | Nikolas Konstantin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Intro Screen -->
+    <section id="intro" class="screen active">
+        <div class="container">
+            <div class="intro-content">
+                <h1>The CEO Test</h1>
+                <p class="subtitle">Self-Assessment</p>
+                <p class="tagline">What makes a great CEO? Can you pass the CEO test?</p>
+                <div class="intro-text">
+                    <p>As you scale, your product takes off, your organization changes with every new hire, and expectations on you grow exponentially. It gets increasingly difficult to understand if you are doing a great job.</p>
+                    <p>Based on the Harvard Business "CEO Test," this assessment covers seven key challenges all CEOs face, drawn from research of leadership challenges from the world's most successful organizations ranging from Microsoft to Shopify.</p>
+                </div>
+                <div class="test-overview">
+                    <div class="overview-item">
+                        <span class="overview-number">35</span>
+                        <span class="overview-label">Questions</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-number">7</span>
+                        <span class="overview-label">Categories</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-number">10</span>
+                        <span class="overview-label">Minutes</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="startQuiz()">Start Assessment</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Screen -->
+    <section id="quiz" class="screen">
+        <div class="quiz-header">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentSection">Test 1</span> of 7
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="quiz-content">
+                <div class="category-header">
+                    <h2 id="categoryTitle">Strategy Development</h2>
+                    <p id="categoryDescription" class="category-description">Can you develop a simple plan for strategy?</p>
+                </div>
+
+                <div class="questions-container" id="questionsContainer">
+                    <!-- Questions will be injected here -->
+                </div>
+
+                <div class="quiz-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousSection()" style="display: none;">Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextSection()">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="rating-legend">
+            <span>1 = Rarely</span>
+            <span>2 = Sometimes</span>
+            <span>3 = Often</span>
+            <span>4 = Consistently</span>
+            <span>5 = Always</span>
+        </div>
+    </section>
+
+    <!-- Email Capture Screen -->
+    <section id="email-capture" class="screen">
+        <div class="container">
+            <div class="email-content">
+                <h2>Get Your Personalized CEO Test Results</h2>
+                <p>Enter your email to receive your complete results, including your overall score, category breakdown, and personalized reflection questions to guide your development.</p>
+
+                <form id="emailForm" onsubmit="submitEmail(event)">
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Your first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company" placeholder="Your company">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Get My Results</button>
+                </form>
+
+                <p class="privacy-note">Your information is kept confidential and will never be shared.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Screen -->
+    <section id="results" class="screen">
+        <div class="container">
+            <div class="results-content">
+                <!-- Overall Score -->
+                <div class="results-section overall-score">
+                    <h2>Your CEO Test Results</h2>
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <span class="score-number" id="totalScore">0</span>
+                            <span class="score-max">/ 175</span>
+                        </div>
+                    </div>
+                    <div class="score-level" id="scoreLevel">Calculating...</div>
+                    <p class="score-message" id="scoreMessage"></p>
+                </div>
+
+                <!-- Category Breakdown -->
+                <div class="results-section category-breakdown">
+                    <h3>Category Breakdown</h3>
+                    <div class="category-bars" id="categoryBars">
+                        <!-- Category bars will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Strengths & Development Areas -->
+                <div class="results-grid">
+                    <div class="results-section strengths">
+                        <h3>Your Strengths</h3>
+                        <ul id="strengthsList">
+                            <!-- Strengths will be injected here -->
+                        </ul>
+                    </div>
+                    <div class="results-section development">
+                        <h3>Development Areas</h3>
+                        <ul id="developmentList">
+                            <!-- Development areas will be injected here -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Reflection Questions -->
+                <div class="results-section reflection">
+                    <h3>Reflection Questions</h3>
+                    <ol class="reflection-list">
+                        <li>What are your top 3 strengths as a CEO?</li>
+                        <li>What are your 3 biggest blind spots or development areas?</li>
+                        <li>Which category surprised you most (either higher or lower than expected)?</li>
+                        <li>Who can give you honest feedback on these seven areas?</li>
+                        <li>What is ONE specific action you will take this week to improve your lowest-scoring category?</li>
+                        <li>Who is coaching you to become the leader you need to be?</li>
+                        <li>If you showed this assessment to your leadership team, would they score you similarly? Where would they differ?</li>
+                    </ol>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="results-section cta-section">
+                    <h3>Ready to Level Up?</h3>
+                    <p>Want to explore your results with someone who can help you grow? Book a conversation to discuss your assessment and identify your highest-leverage development opportunities.</p>
+                    <a href="#" class="btn btn-primary">Book a Conversation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
