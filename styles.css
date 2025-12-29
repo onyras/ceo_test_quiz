@@ -129,20 +129,9 @@ h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
    Intro Screen
    ======================================== */
 
-#intro {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#intro.active {
-    display: flex;
-}
-
 #intro .container {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
 }
 
 .intro-content {
@@ -220,8 +209,7 @@ h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
    ======================================== */
 
 #quiz {
-    min-height: 100vh;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .quiz-header {
@@ -265,11 +253,11 @@ h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
 }
 
 .quiz-content {
-    padding-top: 2rem;
+    padding-top: 1.25rem;
 }
 
 .category-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
@@ -377,23 +365,22 @@ h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
 /* Inline Rating Labels */
 .rating-labels {
     display: flex;
-    gap: 0.625rem;
+    justify-content: space-between;
     margin-bottom: 0.5rem;
-    font-size: 0.6875rem;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 0.02em;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 320px;
 }
 
 .rating-labels span {
-    width: 44px;
     text-align: center;
     white-space: nowrap;
 }
 
 @media (max-width: 640px) {
-    .rating-labels span {
-        width: 40px;
-        font-size: 0.5625rem;
+    .rating-labels {
+        font-size: 0.625rem;
+        max-width: 260px;
     }
 
     .rating-value {
@@ -419,20 +406,9 @@ h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
    Email Capture Screen
    ======================================== */
 
-#email-capture {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#email-capture.active {
-    display: flex;
-}
-
 #email-capture .container {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
 }
 
 .email-content {
@@ -508,8 +484,8 @@ h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
    ======================================== */
 
 #results .container {
-    padding-top: 3rem;
-    padding-bottom: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .results-section {
@@ -530,11 +506,11 @@ h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); }
 /* Overall Score */
 .overall-score {
     text-align: center;
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
 }
 
 .overall-score h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     color: var(--nk-off-white);
 }
 
