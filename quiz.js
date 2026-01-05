@@ -244,14 +244,6 @@ function previousSection() {
 async function submitEmail(event) {
     event.preventDefault();
 
-    const joinNewsletter = document.getElementById('joinNewsletter').checked;
-
-    // Require newsletter subscription to see results
-    if (!joinNewsletter) {
-        alert('Please subscribe to the newsletter to see your results.');
-        return;
-    }
-
     const submitBtn = document.getElementById('submitBtn');
     const btnText = submitBtn.querySelector('.btn-text');
     const btnLoading = submitBtn.querySelector('.btn-loading');
@@ -262,8 +254,7 @@ async function submitEmail(event) {
     submitBtn.disabled = true;
 
     userData = {
-        email: document.getElementById('email').value,
-        joinNewsletter: joinNewsletter
+        email: document.getElementById('email').value
     };
 
     try {

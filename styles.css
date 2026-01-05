@@ -505,6 +505,24 @@ h3 { font-size: clamp(1.375rem, 3vw, 1.75rem); }
     margin: 0 auto;
 }
 
+.signup-prompt {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.125rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.signup-prompt a {
+    color: #4a6741;
+    text-decoration: underline;
+    font-family: var(--nk-font-serif);
+    font-style: italic;
+}
+
+.signup-prompt a:hover {
+    color: #3d5636;
+}
+
 /* Inline Form */
 .inline-form {
     display: flex;
