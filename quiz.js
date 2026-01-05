@@ -244,6 +244,14 @@ function previousSection() {
 async function submitEmail(event) {
     event.preventDefault();
 
+    const joinNewsletter = document.getElementById('joinNewsletter').checked;
+
+    // Require newsletter subscription to see results
+    if (!joinNewsletter) {
+        alert('Please subscribe to the newsletter to see your results.');
+        return;
+    }
+
     const submitBtn = document.getElementById('submitBtn');
     const btnText = submitBtn.querySelector('.btn-text');
     const btnLoading = submitBtn.querySelector('.btn-loading');
@@ -253,33 +261,28 @@ async function submitEmail(event) {
     btnLoading.style.display = 'inline-flex';
     submitBtn.disabled = true;
 
-    const joinNewsletter = document.getElementById('joinNewsletter').checked;
-
     userData = {
         email: document.getElementById('email').value,
         joinNewsletter: joinNewsletter
     };
 
     try {
-        // Only send to newsletter API if checkbox is checked
-        if (joinNewsletter) {
-            const response = await fetch('/api/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            });
+        // Send to newsletter API
+        const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
 
-            const result = await response.json();
+        const result = await response.json();
 
-            if (!response.ok) {
-                throw new Error(result.error || 'Failed to subscribe');
-            }
-
-            console.log('Subscription successful:', result);
+        if (!response.ok) {
+            throw new Error(result.error || 'Failed to subscribe');
         }
 
+        console.log('Subscription successful:', result);
         console.log('Quiz answers:', answers);
 
         // Show results
