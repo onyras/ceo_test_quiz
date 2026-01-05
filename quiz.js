@@ -241,8 +241,17 @@ function previousSection() {
 }
 
 // Submit email and show results
-function submitEmail(event) {
+async function submitEmail(event) {
     event.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+
+    // Show loading state
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline-flex';
+    submitBtn.disabled = true;
 
     userData = {
         email: document.getElementById('email').value,
@@ -250,11 +259,39 @@ function submitEmail(event) {
         company: document.getElementById('company').value
     };
 
-    // In a real app, you'd send this data to a server
-    console.log('User data:', userData);
-    console.log('Quiz answers:', answers);
+    try {
+        // Send to newsletter API
+        const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
 
-    calculateAndShowResults();
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || 'Failed to subscribe');
+        }
+
+        console.log('Subscription successful:', result);
+        console.log('Quiz answers:', answers);
+
+        // Show results
+        calculateAndShowResults();
+
+    } catch (error) {
+        console.error('Subscription error:', error);
+        // Still show results even if subscription fails
+        // User has completed the quiz, don't block them
+        calculateAndShowResults();
+    } finally {
+        // Reset button state
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        submitBtn.disabled = false;
+    }
 }
 
 // Calculate scores

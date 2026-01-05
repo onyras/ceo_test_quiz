@@ -84,26 +84,78 @@
     <section id="email-capture" class="screen">
         <div class="container">
             <div class="email-content">
-                <h2>Get Your Personalized CEO Test Results</h2>
-                <p>Enter your email to receive your complete results, including your overall score, category breakdown, and personalized reflection questions to guide your development.</p>
+                <div class="results-teaser">
+                    <div class="teaser-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h2>Assessment Complete!</h2>
+                    <p class="teaser-subtitle">Your personalized CEO leadership profile is ready.</p>
 
-                <form id="emailForm" onsubmit="submitEmail(event)">
-                    <div class="form-group">
-                        <label for="email">Email <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    <div class="teaser-preview">
+                        <div class="teaser-item">
+                            <span class="teaser-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Overall score across 7 leadership dimensions</span>
+                        </div>
+                        <div class="teaser-item">
+                            <span class="teaser-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Visual leadership profile radar chart</span>
+                        </div>
+                        <div class="teaser-item">
+                            <span class="teaser-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Your top strengths & growth opportunities</span>
+                        </div>
+                        <div class="teaser-item">
+                            <span class="teaser-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </span>
+                            <span>Personalized reflection questions</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="Your first name">
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company" placeholder="Your company">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Get My Results</button>
-                </form>
+                </div>
 
-                <p class="privacy-note">Your information is kept confidential and will never be shared.</p>
+                <div class="newsletter-signup">
+                    <p class="signup-prompt">Enter your email to unlock your results and join our leadership insights newsletter.</p>
+
+                    <form id="emailForm" onsubmit="submitEmail(event)">
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="firstName" name="firstName" placeholder="First name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="company" name="company" placeholder="Company">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                            <span class="btn-text">Unlock My Results</span>
+                            <span class="btn-loading" style="display: none;">
+                                <svg class="spinner" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="30 70"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+
+                    <p class="privacy-note">Join 2,000+ leaders receiving weekly insights. Unsubscribe anytime.</p>
+                </div>
             </div>
         </div>
     </section>
