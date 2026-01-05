@@ -253,29 +253,33 @@ async function submitEmail(event) {
     btnLoading.style.display = 'inline-flex';
     submitBtn.disabled = true;
 
+    const joinNewsletter = document.getElementById('joinNewsletter').checked;
+
     userData = {
         email: document.getElementById('email').value,
-        firstName: document.getElementById('firstName').value,
-        company: document.getElementById('company').value
+        joinNewsletter: joinNewsletter
     };
 
     try {
-        // Send to newsletter API
-        const response = await fetch('/api/subscribe', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        });
+        // Only send to newsletter API if checkbox is checked
+        if (joinNewsletter) {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
 
-        const result = await response.json();
+            const result = await response.json();
 
-        if (!response.ok) {
-            throw new Error(result.error || 'Failed to subscribe');
+            if (!response.ok) {
+                throw new Error(result.error || 'Failed to subscribe');
+            }
+
+            console.log('Subscription successful:', result);
         }
 
-        console.log('Subscription successful:', result);
         console.log('Quiz answers:', answers);
 
         // Show results

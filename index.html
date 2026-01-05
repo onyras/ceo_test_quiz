@@ -130,31 +130,28 @@
                 </div>
 
                 <div class="newsletter-signup">
-                    <p class="signup-prompt">Enter your email to unlock your results and join our leadership insights newsletter.</p>
-
                     <form id="emailForm" onsubmit="submitEmail(event)">
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        <div class="inline-form">
+                            <input type="email" id="email" name="email" required placeholder="Your email address">
+                            <button type="submit" class="btn btn-inline" id="submitBtn">
+                                <span class="btn-text">Get the guide</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <svg class="spinner" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="30 70"/>
+                                    </svg>
+                                </span>
+                            </button>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="text" id="firstName" name="firstName" placeholder="First name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="company" name="company" placeholder="Company">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
-                            <span class="btn-text">Unlock My Results</span>
-                            <span class="btn-loading" style="display: none;">
-                                <svg class="spinner" viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="30 70"/>
+                        <label class="newsletter-checkbox">
+                            <input type="checkbox" id="joinNewsletter" name="joinNewsletter" checked>
+                            <span class="checkbox-custom">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 13l4 4L19 7"/>
                                 </svg>
                             </span>
-                        </button>
+                            <span class="checkbox-label">Join the newsletter, <a href="https://nikolaskonstantin.com/newsletter" target="_blank">The Mindful CEO</a></span>
+                        </label>
                     </form>
-
-                    <p class="privacy-note">Join 2,000+ leaders receiving weekly insights. Unsubscribe anytime.</p>
                 </div>
             </div>
         </div>
