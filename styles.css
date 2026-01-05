@@ -958,6 +958,7 @@ h3 { font-size: clamp(1.375rem, 3vw, 1.75rem); }
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .results-grid .results-section {
