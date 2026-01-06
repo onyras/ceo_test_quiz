@@ -433,9 +433,9 @@ function animateScoreRing(score, maxScore) {
 // Render radar chart
 function renderRadarChart(categoryScores) {
     const svg = document.getElementById('radarChart');
-    const centerX = 200;
+    const centerX = 275;
     const centerY = 200;
-    const maxRadius = 150;
+    const maxRadius = 130;
     const levels = 5;
     const categories = categoryScores.length;
 
@@ -470,8 +470,8 @@ function renderRadarChart(categoryScores) {
         svg.appendChild(line);
 
         // Label
-        const labelX = centerX + Math.cos(angle) * (maxRadius + 25);
-        const labelY = centerY + Math.sin(angle) * (maxRadius + 25);
+        const labelX = centerX + Math.cos(angle) * (maxRadius + 40);
+        const labelY = centerY + Math.sin(angle) * (maxRadius + 40);
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', labelX);
         text.setAttribute('y', labelY);
