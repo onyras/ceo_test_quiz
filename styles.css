@@ -811,7 +811,7 @@ h3 { font-size: clamp(1.375rem, 3vw, 1.75rem); }
 
 .radar-chart {
     width: 100%;
-    max-width: 380px;
+    max-width: 520px;
     height: auto;
 }
 
