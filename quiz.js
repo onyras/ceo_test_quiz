@@ -479,9 +479,8 @@ function renderRadarChart(categoryScores) {
         text.setAttribute('text-anchor', 'middle');
         text.setAttribute('dominant-baseline', 'middle');
 
-        // Shorter labels
-        const shortLabels = ['Strategy', 'Culture', 'Team', 'Transform', 'Listen', 'Crisis', 'Inner Game'];
-        text.textContent = shortLabels[i];
+        // Use full category names
+        text.textContent = cat.title;
         svg.appendChild(text);
     });
 
