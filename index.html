@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The CEO Test | Nikolas Konstantin</title>
+    <link rel="icon" type="image/png" href="images/nk_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -12,6 +13,51 @@
 <body>
     <!-- Intro Screen -->
     <section id="intro" class="screen active">
+        <!-- Other Tests Dropdown -->
+        <div class="other-tests-dropdown">
+            <button class="dropdown-trigger" onclick="toggleDropdown()">
+                Other Tests
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 9l-7 7-7-7"/>
+                </svg>
+            </button>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="https://mindset.nikolaskonstantin.com" target="_blank" class="dropdown-item">
+                    <span class="dropdown-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </span>
+                    <span class="dropdown-text">
+                        <strong>Mindset Culture Test</strong>
+                        <small>Discover your organization's mindset</small>
+                    </span>
+                </a>
+                <a href="https://annualreview.nikolaskonstantin.com" target="_blank" class="dropdown-item">
+                    <span class="dropdown-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </span>
+                    <span class="dropdown-text">
+                        <strong>Annual Review</strong>
+                        <small>Reflect on your year</small>
+                    </span>
+                </a>
+                <span class="dropdown-item" style="opacity: 0.5; cursor: default;">
+                    <span class="dropdown-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </span>
+                    <span class="dropdown-text">
+                        <strong>Five Drivers Quiz</strong>
+                        <small>Coming Soon</small>
+                    </span>
+                </span>
+            </div>
+        </div>
+
         <div class="container intro-centered">
             <!-- Chart at Top -->
             <div class="intro-chart">
@@ -259,6 +305,46 @@
                     <h3>Ready to Level Up?</h3>
                     <p>Want to explore your results with someone who can help you grow? Book a conversation to discuss your assessment and identify your highest-leverage development opportunities.</p>
                     <a href="https://calendly.com/nikolaskonstantin/1-on-1-conversation" target="_blank" class="btn btn-primary">Book a Conversation</a>
+                </div>
+
+                <!-- Other Tests Bento -->
+                <div class="other-tests-bento">
+                    <h4>Explore More Assessments</h4>
+                    <div class="bento-grid">
+                        <a href="https://mindset.nikolaskonstantin.com" target="_blank" class="bento-card">
+                            <div class="bento-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div class="bento-content">
+                                <strong>Mindset Culture Test</strong>
+                                <p>Discover your organization's mindset</p>
+                            </div>
+                        </a>
+                        <a href="https://annualreview.nikolaskonstantin.com" target="_blank" class="bento-card">
+                            <div class="bento-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div class="bento-content">
+                                <strong>Annual Review</strong>
+                                <p>Reflect on your year</p>
+                            </div>
+                        </a>
+                        <div class="bento-card" style="opacity: 0.5; cursor: default;">
+                            <div class="bento-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div class="bento-content">
+                                <strong>Five Drivers Quiz</strong>
+                                <p>Coming Soon</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1305,3 +1305,235 @@ h3 { font-size: clamp(1.375rem, 3vw, 1.75rem); }
 .results-section:nth-child(3) { animation-delay: 0.15s; }
 .results-section:nth-child(4) { animation-delay: 0.2s; }
 .results-section:nth-child(5) { animation-delay: 0.25s; }
+
+/* ========================================
+   Other Tests Dropdown (Landing Page)
+   ======================================== */
+
+.other-tests-dropdown {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 200;
+}
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--nk-white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: var(--nk-font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    transition: all var(--nk-transition-fast);
+}
+
+.dropdown-trigger:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    color: var(--nk-black);
+}
+
+.dropdown-trigger svg {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--nk-transition-fast);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 260px;
+    background: var(--nk-white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all var(--nk-transition-fast);
+}
+
+.dropdown-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu.open + .dropdown-trigger svg,
+.other-tests-dropdown:has(.dropdown-menu.open) .dropdown-trigger svg {
+    transform: rotate(180deg);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    text-decoration: none;
+    color: var(--nk-black);
+    transition: background var(--nk-transition-fast);
+}
+
+.dropdown-item:first-child {
+    border-radius: 12px 12px 0 0;
+}
+
+.dropdown-item:last-child {
+    border-radius: 0 0 12px 12px;
+}
+
+.dropdown-item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dropdown-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.dropdown-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(127, 171, 200, 0.12);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.dropdown-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--nk-blue);
+}
+
+.dropdown-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.dropdown-text strong {
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+.dropdown-text small {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   Other Tests Bento (Results Page)
+   ======================================== */
+
+.other-tests-bento {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.other-tests-bento h4 {
+    text-align: center;
+    font-family: var(--nk-font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 1.25rem;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.bento-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: var(--nk-white);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--nk-black);
+    transition: all var(--nk-transition-fast);
+}
+
+.bento-card:hover {
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.bento-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(127, 171, 200, 0.12);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+}
+
+.bento-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--nk-blue);
+}
+
+.bento-content strong {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.bento-content p {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+    .other-tests-dropdown {
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .dropdown-trigger {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.8125rem;
+    }
+
+    .dropdown-menu {
+        min-width: 240px;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .bento-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .bento-icon {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+}

@@ -524,6 +524,20 @@ function renderRadarChart(categoryScores) {
     `).join('');
 }
 
+// Toggle dropdown menu
+function toggleDropdown() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.classList.toggle('open');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    const dropdown = document.querySelector('.other-tests-dropdown');
+    if (dropdown && !dropdown.contains(e.target)) {
+        document.getElementById('dropdownMenu')?.classList.remove('open');
+    }
+});
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initAnswers();
