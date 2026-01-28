@@ -14,50 +14,58 @@
 <body>
     <!-- Intro Screen -->
     <section id="intro" class="screen active">
-        <!-- Other Tests Dropdown -->
-        <div class="other-tests-dropdown">
-            <button class="dropdown-trigger" onclick="toggleDropdown()">
-                Other Tests
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M19 9l-7 7-7-7"/>
-                </svg>
-            </button>
-            <div class="dropdown-menu" id="dropdownMenu">
-                <a href="https://mindset.nikolaskonstantin.com" target="_blank" class="dropdown-item">
-                    <span class="dropdown-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                    </span>
-                    <span class="dropdown-text">
-                        <strong>Mindset Culture Test</strong>
-                        <small>Discover your organization's mindset</small>
-                    </span>
-                </a>
-                <a href="https://annualreview.nikolaskonstantin.com" target="_blank" class="dropdown-item">
-                    <span class="dropdown-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                    </span>
-                    <span class="dropdown-text">
-                        <strong>Annual Review</strong>
-                        <small>Reflect on your year</small>
-                    </span>
-                </a>
-                <span class="dropdown-item" style="opacity: 0.5; cursor: default;">
-                    <span class="dropdown-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                    </span>
-                    <span class="dropdown-text">
-                        <strong>Five Drivers Quiz</strong>
-                        <small>Coming Soon</small>
-                    </span>
-                </span>
+        <!-- Navigation Header -->
+        <nav class="nav-header">
+            <!-- NK Logo Link -->
+            <a href="https://www.nikolaskonstantin.com" target="_blank" class="nk-logo-link">
+                <img src="images/nk_logo.png" alt="NK">
+            </a>
+
+            <!-- Other Tests Dropdown -->
+            <div class="other-tests-dropdown">
+                <button class="dropdown-trigger" onclick="toggleDropdown()">
+                    Other Tests
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="https://mindset.nikolaskonstantin.com" target="_blank" class="dropdown-item">
+                        <span class="dropdown-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </span>
+                        <span class="dropdown-text">
+                            <strong>Mindset Culture Test</strong>
+                            <small>Discover your organization's mindset</small>
+                        </span>
+                    </a>
+                    <a href="https://annualreview.nikolaskonstantin.com" target="_blank" class="dropdown-item">
+                        <span class="dropdown-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        <span class="dropdown-text">
+                            <strong>Annual Review</strong>
+                            <small>Reflect on your year</small>
+                        </span>
+                    </a>
+                    <a href="https://5driver.nikolaskonstantin.com" target="_blank" class="dropdown-item">
+                        <span class="dropdown-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </span>
+                        <span class="dropdown-text">
+                            <strong>Five Drivers Quiz</strong>
+                            <small>What's driving your leadership?</small>
+                        </span>
+                    </a>
+                </div>
             </div>
-        </div>
+        </nav>
 
         <div class="container intro-centered">
             <!-- Chart at Top -->
@@ -334,7 +342,7 @@
                                 <p>Reflect on your year</p>
                             </div>
                         </a>
-                        <div class="bento-card" style="opacity: 0.5; cursor: default;">
+                        <a href="https://5driver.nikolaskonstantin.com" target="_blank" class="bento-card">
                             <div class="bento-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                     <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -342,9 +350,9 @@
                             </div>
                             <div class="bento-content">
                                 <strong>Five Drivers Quiz</strong>
-                                <p>Coming Soon</p>
+                                <p>What's driving your leadership?</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
